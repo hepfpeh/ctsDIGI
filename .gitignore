@@ -1,3 +1,5 @@
+~*
+*~
 *.aux
 *.log
 *.bcf
@@ -5,3 +7,4 @@
 *.blg
 *.run.xml
 *.ttt
+*.fff

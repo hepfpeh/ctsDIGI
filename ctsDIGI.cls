@@ -1051,7 +1051,7 @@
 \raggedright
 
 \RequirePackage{fancyhdr}
-\setlength{\headheight}{15.2pt}
+\setlength{\headheight}{15.4pt}
 \fancyhf{}
 \renewcommand{\headrulewidth}{0pt}
 
@@ -1762,7 +1762,7 @@ Art\'{\i}culo Cient\'{\i}fico/ Scientific Article
 \def\leftheader#1{\def\r@headl{#1}}
 
 \RequirePackage{fancyhdr}
-\setlength{\headheight}{15.2pt}
+\setlength{\headheight}{15.4pt}
 \fancyhf{}
 \renewcommand{\headrulewidth}{0pt}
 
