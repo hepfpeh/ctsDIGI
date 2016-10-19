@@ -196,6 +196,13 @@
     }{%
       \def\def@biblatex{\@biblatexmode}%  the selected bibliography package is Biblatex
       \RequirePackage[style=apa,sortcites=true,sorting=nyt,backend=biber]{biblatex}
+      %% Ajuste para que aparezca ampersand y no 'y' en las citas bibliograficas
+      \AtEndPreamble{%
+      	\renewcommand*{\finalnamedelim}{%
+   			\ifnumgreater{\value{liststop}}{2}{\finalandcomma}{}%
+   			\addspace\&\space}%
+   	  }
+   	  %% Fin del ajuste
       \@ifundefined{def@man}{%
         \defbibheading{bibliography}{\section*{\normalfont\refname}}%
       }{%
@@ -1329,19 +1336,19 @@
 %% Se muestran las palabras clave (espanol)
 %%
 
-   \@ifundefined{@keywordssp}{}{%
-      \vspace{1.0in}
-      {\keywordspname:} \@keywordssp%
-    }
+%%   \@ifundefined{@keywordssp}{}{%
+%%      \vspace{1.0in}
+%%      {\keywordspname:} \@keywordssp%
+%%    }
 
 %%
 %% Se muestran los keywords (ingles)
 %%
 
-   \@ifundefined{@keywordsen}{}{%
-      \vspace{0.2in}
-      {\keywordenname:} \@keywordsen%
-    }
+%%   \@ifundefined{@keywordsen}{}{%
+%%      \vspace{0.2in}
+%%      {\keywordenname:} \@keywordsen%
+%%    }
 
   \@ifundefined{apaSix@maskauthoridentity}{
       \@ifundefined{@acks}
@@ -1365,19 +1372,27 @@
 %%
   \runninglinenumbers*
 %%
-%% Se muestra el resumen
+%% Se muestra el resumen y palabras clave
 %%
   \fussy
   \@ifundefined{@abstractsp}{}{%
     \section{\normalfont\normalsize\abstractspname}% BDB
     \noindent\@abstractsp\par% BDB\fussy
+    \@ifundefined{@keywordssp}{}{%
+     \setlength{\parindent}{0.4in}%
+      \indent\textit{\keywordspname:} \@keywordssp%
+    }
   }
 %%
-%% Se muestra el abstract
+%% Se muestra el abstract y keywords
 %%  
   \@ifundefined{@abstracten}{}{%
     \section{\normalfont\normalsize\abstractenname}% BDB
     \noindent\@abstracten\par% BDB
+    \@ifundefined{@keywordssp}{}{%
+     \setlength{\parindent}{0.4in}%
+      \indent\textit{\keywordenname:} \@keywordsen%
+    }%
     \newpage
   }
 

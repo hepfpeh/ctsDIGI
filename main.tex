@@ -1,11 +1,16 @@
-\documentclass[preview]{ctsDIGI}
+\documentclass[submit,biblatex]{ctsDIGI}
 
 \usepackage[spanish,es-nodecimaldot,es-tabla]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{csquotes}
-\usepackage[style=apa,sortcites=true,sorting=nyt,backend=biber]{biblatex}
+%\usepackage[style=apa,sortcites=true,sorting=nyt,backend=biber]{biblatex}
 \DeclareLanguageMapping{spanish}{spanish-apa}
 \addbibresource{bibliografia.bib}
+
+%\renewcommand*{\finalnamedelim}{%
+%   \ifnumgreater{\value{liststop}}{2}{\finalandcomma}{}%
+%   \addspace\&\space}
+
 
 \usepackage{lipsum}
 
