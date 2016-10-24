@@ -1,0 +1,110 @@
+\documentclass[submit,biblatex]{ctsDIGI}
+
+\usepackage[spanish,es-nodecimaldot,es-tabla]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{csquotes}
+\DeclareLanguageMapping{spanish}{spanish-apa}
+\addbibresource{bibliografia.bib}
+
+\usepackage{lipsum}
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\titleSp{Título en español}
+\titleEn{English title}
+\shorttitle{Título corto}
+
+
+\author{A.Fulano*, B. Mengano}
+\affiliation{Escuela de ciencias Físicas y Matemáticas, Universidad de San Carlos de Guatemala, Guatemala}
+\contactmail{aful@ecfm.usac.edu.gt}
+\keywordsSp{Primera, Segunda, Tercera, Cuarta, Quinta}
+\keywordsEn{Frist, Second, Third, Fourth, Fifth}
+%----------------------------------------------------------------------------------------
+%	ABSTRACTS
+%----------------------------------------------------------------------------------------
+
+\abstractSp{\lipsum[1]}
+
+\abstractEn{\lipsum[1]}
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle
+
+
+%----------------------------------------------------------------------------------------
+%	ARTICLE CONTENTS
+%----------------------------------------------------------------------------------------
+
+
+
+\section{Introducción}
+En este párrafo se muestra como son la referecias a tablas (Ver Tabla \ref{table:resumen}), figuras (Ver Figura \ref{fig:Arreglo}) y bibliografía (\cite{Maldacena:2016upp}).
+
+\lipsum[1]
+
+\section{Materiales y métodos}
+\lipsum*[1](\cite{Aparicio:2016qqb})
+
+\subsection{Subsección}
+\lipsum*[1]
+\begin{equation}
+a^2 = b^2 + c^2 -2bc\cos\theta
+\end{equation}
+\lipsum[1]
+
+\section{Resultados}
+\lipsum*[1](\cite{halliday1986fundamentos})
+
+\begin{table}
+\begin{center}
+\caption{Esta es la descripción (\emph{Caption}) de la tabla.} \label{table:resumen}
+\begin{threeparttable}
+{\small
+\begin{tabular}{c c c}
+\toprule
+Columna 1 & Columna 2 & Columna 3 \tnote{$^\diamond$} \\
+\midrule
+Fila 1	& $m$&	1\\
+Fila 1	&$q$&	2 \tnote{$^\ddag$} \\
+Fila 1	&$s$&	3\\
+Fila 1	&$\tau$ & 4\\
+\bottomrule
+\end{tabular}}
+\smallskip
+{\scriptsize
+\begin{tablenotes}
+\item [$\diamond$] Nota 1 de la tabla.
+\item [$\ddag$] Nota 2 de la tabla.
+\end{tablenotes}
+}
+\end{threeparttable}
+\end{center}
+\end{table}
+
+\lipsum*[1]
+
+\section{Discusión}
+\lipsum*[1](\cite{knoll2010radiation})
+
+\begin{figure}
+\centering
+\includegraphics{figura.pdf}
+\caption{Esta es la Descripción de la figura.}
+\label{fig:Arreglo}
+\end{figure}
+
+\lipsum[1]
+
+
+\section{Agradecimientos}
+\lipsum[1]
+
+\ctsDIGIprintbibliography
+
+\end{document}
