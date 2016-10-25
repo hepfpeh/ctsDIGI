@@ -8,3 +8,6 @@
 *.run.xml
 *.ttt
 *.fff
+*.synctex.gz
+
+/guide
