@@ -1,5 +1,8 @@
+# Ignora algunos archivos creados por editores de texto
 ~*
 *~
+
+# Ignora los archivos intermedios de latex
 *.aux
 *.log
 *.bcf
@@ -11,4 +14,8 @@
 *.synctex.gz
 *.out
 
+# Ingnora la carpeta guide
 /guide
+
+# Ignota los archivos .svg
+*.svg
