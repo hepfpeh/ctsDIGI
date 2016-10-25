@@ -9,5 +9,6 @@
 *.ttt
 *.fff
 *.synctex.gz
+*.out
 
 /guide
