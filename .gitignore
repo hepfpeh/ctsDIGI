@@ -14,8 +14,9 @@
 *.synctex.gz
 *.out
 
-# Ingnora la carpeta guide
-/guide
+# Ingnora los pdf de salida
+docmain.pdf
+main.pdf
 
 # Ignota los archivos .svg
 *.svg
