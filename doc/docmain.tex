@@ -5,6 +5,8 @@
 
 \usepackage{hyperref}
 \usepackage{lipsum}
+\usepackage{enumitem}
+\setlist[description]{leftmargin=\parindent,labelindent=\parindent}
 
 \title{Primeras pruebas de la clase \texttt{ctsDIGI} para enviar y previsualizar artículos a la revista Ciencia, Tecnología y Salud de la DIGI}
 \author{L.García, H. Pérez\footnote{\href{mailto:hector@ecfm.usac.edu.gt}{hector@ecfm.usac.edu.gt}}\\\small{\href{http://ecfm.usac.edu.gt}{Escuela de Ciencias Físicas y Matemáticas}, USAC}}
@@ -20,8 +22,8 @@
 
 
 \section{Introducción}
-La idea y motivación de esta clase es facilitar el envío de articulos a la revista de \href{http://digi.usac.edu.gt/ojsrevistas/index.php/cytes}{Ciencia, Tectnología y Salud} de la \href{http://digi.usac.edu.gt/}{DIGI} para usuarios de \href{https://www.latex-project.org/}{\LaTeX}. 
-El objetivo principal es proporcionar el formato para el envío de artículos, sin embargo la salida por defecto es emula la forma en que se verá el artículo en la revista. Esto es así para que los autores tengan una clara idea de como se verá su publicación y puedan hacer ajustes a figuras, tablas, ecuaciones, etc.
+La idea y motivación de esta clase es facilitar el envío de artículos a la revista de \href{http://digi.usac.edu.gt/ojsrevistas/index.php/cytes}{Ciencia, Tecnología y Salud} de la \href{http://digi.usac.edu.gt/}{DIGI} para usuarios de \href{https://www.latex-project.org/}{\LaTeX}. 
+El objetivo principal es proporcionar el formato para el envío de artículos, sin embargo la salida por defecto  emula la forma en que se verá el artículo en la revista. Esto es así para que los autores tengan una clara idea de como se verá su publicación y puedan hacer ajustes a figuras, tablas, ecuaciones, etc.
 
 La clase \texttt{ctsDIGI} se basa en el paquete \href{https://www.ctan.org/pkg/apa6}{\texttt{apa6}}, por lo que están activias aun la mayoría de sus opciones. Los modificaciones hechas y los problemas aun no resueltos se detallan en las siguientes secciones.
 
@@ -41,13 +43,22 @@ La versión mas reciente de la clase se obtiene del repositorio \href{https://gi
   - Makefile           Archivo de instrucciones para el comando make
 \end{verbatim}
 
+En la carpeta \texttt{template} se incluyen todos los archivos necesarios para generar un documento que utiliza la clase. Este no solo es un ejemplo sino que también puede ser utilizado como plantilla para otros documentos. Es necesario recordar que de momento esta clase \emph{no} se instala en el sistema, por lo que el archivo \texttt{ctsDIGI.cls} \emph{debe} estar en la misma carpeta que el \texttt{.tex} que la utiliza. La forma de compilar por primera vez es:
+\begin{verbatim}
+pdflatex main.tex
+biber main.bcf
+pdflatex main.tex
+pdflatex main.tex
+\end{verbatim}
+\texttt{biber} se debe volver a correr solo cuando se hace algún cambio en el archivo \texttt{.bib}.
+
 \section{La Clase}
 La clase genera dos tipos de salida, que se escogen por medio de opciones: \texttt{submit} y \texttt{preview} que generan el formato apropiado para enviar artículos y previsualizar como se verán en línea o impresos en la revista.
 
 Por el momento se ha implementado la clase modificando el archivo \texttt{apa6.cls} y renombrandolo como \texttt{ctsDIGI.cls}, por lo que la documentación de las opciones para el paquete \texttt{apa6} sigue siendo válida para la nueva clase.
 
 \subsection{Comandos}
-Los siguientes comandos se definieron en la clase.
+Los siguientes comandos se definieron en la clase:
 \begin{description}
 \item [\texttt{\textbackslash titleSp\{\}}] Título en español.
 \item [\texttt{\textbackslash titleEn\{\}}] Título en inglés.
@@ -67,10 +78,10 @@ Con excepción del comando \texttt{\textbackslash ctsDIGIprintbibliography} todo
 \subsection{Formato de vista preliminar}
 La vista preliminar del artúculo online e impreso se activa por medio de la opción \texttt{preview}:
 \begin{verbatim}
-\usepackage[preview]{ctsDIGI}
+\documentclass[preview]{ctsDIGI}
 \end{verbatim}
 
-Esta también es la opción por defecto. Se recomienda hacer todos los ajustes de tamaño de gráficas, tablas y ecuaciones dentro de esta opción, ya que está planeado que esta sea la que se importe a la revista al momento de la edición.
+Esta también es la opción por defecto por lo que no es necesario especificarla. Se recomienda hacer todos los ajustes de tamaño de gráficas, tablas y ecuaciones dentro de esta opción, ya que está planeado que esta sea la que se importe a la revista al momento de la edición.
 
 Esta opción se modificó para parecerse lo más posible a la versión online de los artículos publicados. Al momento de escribirse esto, hay varios campos de fechas que no se pueden modificar por el usuario, como la fecha de recepción, revisiones, publicación, etc.
 
@@ -79,7 +90,7 @@ Se debe tomar en cuenta que el aspecto final del artículo será decidido por lo
 \subsection{Formato para envío de artículos}
 Para habilitar esta salida se pasa la opción \texttt{submit} al momento de llamar la case:
 \begin{verbatim}
-\usepackage[submit]{ctsDIGI}
+\documentclass[submit]{ctsDIGI}
 \end{verbatim}
 
 La clase \texttt{apa6} con la opción \texttt{man} ya genera un formato con la mayoria de requerimentos exigidos por la DIGI para la recepción de artículos, como los siguientes:
@@ -94,23 +105,17 @@ La clase \texttt{apa6} con la opción \texttt{man} ya genera un formato con la m
 Las principales modificaciones respecto del formato \texttt{apa6} son las siguientes:
 \begin{itemize}
 \item Se incluyen los comandos para generar la dirección de contacto del autor, título en ingles y español, palabras clave en ingles y español, abstract en ingles y español.
-\item Las palabras clave aparecen en la titlepage y no después de los abstracts.
 \item Se numeran las líneas en el magen izquierdo a partir del abstract (resumen) y se finalizan antes de la bibliografía.
+\item En las citas bibliográficas dentro del texto con multiples autores aparece \& en lugar de \emph{y}.
 \end{itemize}
 
 
 \section{Citas bibliográficas}
-Las citas bibliograficas son manejadas por \texttt{biber} y obedecen al formato de \texttt{biblatex}, el cual acepta también el de \texttt{bibtex}. La diferencia principal es que \texttt{biber} tiene soporte para unicode. Véase que el archivo de ejemplo \texttt{bibliobrafia.bib} fue escrito con unicode. 
+Las citas bibliográficas son manejadas por \texttt{biber} y obedecen al formato de \texttt{biblatex}, el cual acepta también el de \texttt{bibtex}. La diferencia principal es que \texttt{biber} tiene soporte para unicode. Véase que el archivo de ejemplo \texttt{bibliobrafia.bib} fue escrito con unicode. 
 
 %Se incluyen una citas de ejemplo como (\cite{halliday1986fundamentos}), también (\cite{knoll2010radiation}). Con los artículos (\cite{Maldacena:2016upp}) y (\cite{Aparicio:2016qqb}).
 
-La forma de compilar este documento es:
-\begin{verbatim}
-pdflatex main.tex
-biber main.bcf
-pdflatex main.tex
-\end{verbatim}
-\texttt{biber} se debe volver a correr solo cuando se hace algún cambion en el archivo \texttt{.bib}.
+
 
 \section{Notas y problemas}
 \begin{itemize}
@@ -120,7 +125,7 @@ pdflatex main.tex
 \end{verbatim}
 ocasiona que no se numeren las líneas de los párrafos que contienen ecuaciones. Para resolverlo se ha implementado la opción \texttt{amsmath} en la nueva clase, esto significa que la forma de incluir el paquete será
 \begin{verbatim}
-\usepackage[submit,amsmath]{ctsDIGI}.
+\documentclass[submit,amsmath]{ctsDIGI}.
 \end{verbatim}
 También se debe observar que las ecuaciones \emph{no generan números de línea}, así que es mejor numerarlas todas para que al momento de la revisión se tenga un número de referencia. Este problema solo se presente en la opción \texttt{submit}.
 
