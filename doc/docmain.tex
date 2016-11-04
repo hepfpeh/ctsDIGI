@@ -8,7 +8,7 @@
 \usepackage{enumitem}
 \setlist[description]{leftmargin=\parindent,labelindent=\parindent}
 
-\title{Primeras pruebas de la clase \texttt{ctsDIGI} para enviar y previsualizar artículos a la revista Ciencia, Tecnología y Salud de la DIGI}
+\title{Clase \texttt{ctsDIGI} para enviar y previsualizar artículos a la revista Ciencia, Tecnología y Salud de la DIGI}
 \author{L.García, H. Pérez\footnote{\href{mailto:hector@ecfm.usac.edu.gt}{hector@ecfm.usac.edu.gt}}\\\small{\href{http://ecfm.usac.edu.gt}{Escuela de Ciencias Físicas y Matemáticas}, USAC}}
 \date{Octubre 2016}
 
@@ -50,12 +50,12 @@ biber main.bcf
 pdflatex main.tex
 pdflatex main.tex
 \end{verbatim}
-\texttt{biber} se debe volver a correr solo cuando se hace algún cambio en el archivo \texttt{.bib}.
+También se incluye un \texttt{Makefile} en la carpeta, de forma que solo es necesario escribir \texttt{make} para compilar el documento y \texttt{make clean} para eliminar todos los archivos intermedios generados (conserva el \texttt{.pdf} de salida).
 
 \section{La Clase}
 La clase genera dos tipos de salida, que se escogen por medio de opciones: \texttt{submit} y \texttt{preview} que generan el formato apropiado para enviar artículos y previsualizar como se verán en línea o impresos en la revista.
 
-Por el momento se ha implementado la clase modificando el archivo \texttt{apa6.cls} y renombrandolo como \texttt{ctsDIGI.cls}, por lo que la documentación de las opciones para el paquete \texttt{apa6} sigue siendo válida para la nueva clase.
+Por el momento se ha implementado la clase modificando el archivo \texttt{apa6.cls} y renombrándolo como \texttt{ctsDIGI.cls}, por lo que la documentación de las opciones para el paquete \texttt{apa6} sigue siendo válida para la nueva clase.
 
 \subsection{Comandos}
 Los siguientes comandos se definieron en la clase:
@@ -83,17 +83,17 @@ La vista preliminar del artúculo online e impreso se activa por medio de la opc
 
 Esta también es la opción por defecto por lo que no es necesario especificarla. Se recomienda hacer todos los ajustes de tamaño de gráficas, tablas y ecuaciones dentro de esta opción, ya que está planeado que esta sea la que se importe a la revista al momento de la edición.
 
-Esta opción se modificó para parecerse lo más posible a la versión online de los artículos publicados. Al momento de escribirse esto, hay varios campos de fechas que no se pueden modificar por el usuario, como la fecha de recepción, revisiones, publicación, etc.
+Esta opción se modificó para parecerse lo más posible a la versión online de los artículos publicados. Hay varios campos de fechas que no se pueden modificar por el usuario, como la fecha de recepción, revisiones, publicación, etc.
 
 Se debe tomar en cuenta que el aspecto final del artículo será decidido por los editores de la revista y no coincidirá al $100\%$ con este formato.
 
 \subsection{Formato para envío de artículos}
-Para habilitar esta salida se pasa la opción \texttt{submit} al momento de llamar la case:
+Para habilitar esta salida se pasa la opción \texttt{submit} al momento de llamar la clase:
 \begin{verbatim}
 \documentclass[submit]{ctsDIGI}
 \end{verbatim}
 
-La clase \texttt{apa6} con la opción \texttt{man} ya genera un formato con la mayoria de requerimentos exigidos por la DIGI para la recepción de artículos, como los siguientes:
+La clase \texttt{apa6} con la opción \texttt{man} ya genera un formato con la mayoría de requerimientos exigidos por la DIGI para la recepción de artículos, como los siguientes:
 \begin{itemize}
 \item Titlepage con título corto, título, autores con sus afiliaciones.
 \item Página con abstract.
@@ -105,31 +105,53 @@ La clase \texttt{apa6} con la opción \texttt{man} ya genera un formato con la m
 Las principales modificaciones respecto del formato \texttt{apa6} son las siguientes:
 \begin{itemize}
 \item Se incluyen los comandos para generar la dirección de contacto del autor, título en ingles y español, palabras clave en ingles y español, abstract en ingles y español.
-\item Se numeran las líneas en el magen izquierdo a partir del abstract (resumen) y se finalizan antes de la bibliografía.
+\item Se numeran las líneas en el margen izquierdo a partir del abstract (resumen) y se finalizan antes de la bibliografía.
 \item En las citas bibliográficas dentro del texto con multiples autores aparece \& en lugar de \emph{y}.
 \end{itemize}
 
-
-\section{Citas bibliográficas}
-Las citas bibliográficas son manejadas por \texttt{biber} y obedecen al formato de \texttt{biblatex}, el cual acepta también el de \texttt{bibtex}. La diferencia principal es que \texttt{biber} tiene soporte para unicode. Véase que el archivo de ejemplo \texttt{bibliobrafia.bib} fue escrito con unicode. 
-
-%Se incluyen una citas de ejemplo como (\cite{halliday1986fundamentos}), también (\cite{knoll2010radiation}). Con los artículos (\cite{Maldacena:2016upp}) y (\cite{Aparicio:2016qqb}).
-
-
-
-\section{Notas y problemas}
-\begin{itemize}
-\item Al momento de escribir esto, esta clase tiene un conflicto heredado de \texttt{lineno} con  \texttt{amsmath}. Cuando se llama \texttt{amsmath} de la forma usual
+\subsection{Ecuaciones y \texttt{amsmath}}
+Cuando se utiliza la opción \texttt{submit} para la salida existe un problema de conflicto entre los paquetes \href{https://www.ctan.org/pkg/lineno}{\texttt{lineno}} y\href{https://www.ctan.org/pkg/amsmath}{\texttt{amsmath}} ya que ambos redefinen los entornos de ecuaciones. Esto hace que los párrafos que contienen ecuaciones no sean numerados. Para resolverlo se incluye en la clase la opción \texttt{amsmath} que llama a los paquetes en el orden adecuado para solventar el conflicto. La forma de incluir a \texttt{amsmath} será:
 \begin{verbatim}
-\usepackage[...]{amsmath}
+\documentclass[...,amsmath,...]{ctsDIGI}.
 \end{verbatim}
-ocasiona que no se numeren las líneas de los párrafos que contienen ecuaciones. Para resolverlo se ha implementado la opción \texttt{amsmath} en la nueva clase, esto significa que la forma de incluir el paquete será
-\begin{verbatim}
-\documentclass[submit,amsmath]{ctsDIGI}.
-\end{verbatim}
+y no mediante \texttt{\textbackslash usepackage}.
+
 También se debe observar que las ecuaciones \emph{no generan números de línea}, así que es mejor numerarlas todas para que al momento de la revisión se tenga un número de referencia. Este problema solo se presente en la opción \texttt{submit}.
 
-\item La fuente y el tamaño de letra se cambia automáticamente en los captions de las figuras y tablas por la clase. \emph{Sin embargo}, por alguna razón aun desconocida, el tamaño de letra \emph{dentro} del entorno de figure también se altera, por lo que el texto dentro de las figuras no se ve igual al cambiar entre las opción \texttt{submit} y \texttt{preview}. Se recomienda ajustarlo dentro de la opción \texttt{preview}.
+Se recomienda ajustar los cambios de línea de ecuaciones largas con dentro de la la opción \texttt{preview}.
+
+\subsection{Figuras y tablas (floats)}
+Los entornos \texttt{figure} y \texttt{table} se comportan diferente según la opción de salida que se escoja. Con la opción \texttt{preview} se comportan de la forma habitual en \LaTeX, colocando las figuras y las tablas dentro del texto. Con la opción \texttt{submit} son enviadas automáticamente al final del documento y en páginas individuales.
+
+El tipo de fuente de las descripciones (\emph{caption}) es fijado por la clase. Se recomienda ajustar el tamaño y ubicación de figuras y tablas con dentro de la la opción \texttt{preview}.
+
+Dentro del documento de ejemplo en \texttt{template} se incluyen una figura y una tabla que se ajustan dentro una columna cuando el formato es a dos columnas. 
+
+\subsubsection{Figuras}
+Se recomienda que las figuras a incluir tengan el texto \emph{renderizado} ya dentro de ellas y que este proceso no se haga al momento de compilación, ya que el tamaño y tipo de fuente cambia según la opción de salida, lo cual puede ocasionar que la figura no se vea igual al cambiar la salida. El archivo \texttt{figura.pdf} es un ejemplo de figura con texto renderizado generada con \href{https://inkscape.org}{\texttt{inkscape}}. Las Figuras renderizadas al momento de compilación son aquellas que utilizan comandos para colocar el texto, como las que utilizan \href{http://tug.org/PSTricks/main.cgi/}{\texttt{pstricks}} o similares.
+
+Es importante hacer notar que en las figuras, la descripción debe aparecer \emph{después} de las figuras. (ver el documento de ejemplo en \texttt{template})
+
+\subsubsection{Tablas}
+Hacer tablas en \LaTeX siempre ha sido un arte que requiere paciencia y esfuerzo. En el \texttt{.tex} de ejemplo en la carpeta \texttt{template} se muestra una tabla con el formato esperado de la revista. Algunos lineamientos para hacerlas son:
+\begin{itemize}
+\item La descripción va \emph{antes} de la tabla sin punto al final.
+\item Tomar en cuenta las líneas horizontales que separan el cuerpo de la tabla de los encabezados.
+\item Las notas al pie de la tabla deben contener la palabra \emph{Nota} en cursiva seguida del símbolo respectivo.
+\end{itemize}
+
+
+
+\subsection{Citas bibliográficas}
+Las citas bibliográficas son manejadas por \texttt{biber} y obedecen al formato de \texttt{biblatex}, el cual acepta también el de \texttt{bibtex}. La diferencia principal es que \texttt{biber} tiene soporte para unicode. Véase que el archivo de ejemplo \texttt{bibliobrafia.bib} fue escrito con unicode. Para que las citas bibliográficas se ajusten al formato requerido es necesario incluir la opción \texttt{biblatex} al momento de llamar la clase
+\begin{verbatim}
+\documentclass[..., bibllatex,...]{ctsDIGI}.
+\end{verbatim}
+LLamar a \texttt{biblatex} por medio de \texttt{\textbackslash usepackage} no generará correctamente las citas bibliográficas dentro del texto para multiples autores.
+
+
+\section{Notas}
+\begin{itemize}
 
 \item \texttt{biber} da problema con la forma tradicional de poner acentos en \TeX. Por Ejemplo: si se coloca en el archivo \texttt{.bib} la i con acento como\texttt{\textbackslash'\{\textbackslash i\} } esto dará un error de unicode. Hay que colocar \texttt{í}.
 
@@ -139,15 +161,11 @@ También se debe observar que las ecuaciones \emph{no generan números de línea
 
 \section{TODO}
 \begin{enumerate}
-\item Colocarle tablas y figuras de ejemplo a este documento.
-\item Enviar a la DIGI un artículo de prueba para ver que dicen del formato.
-\item Arreglar el problema de las fuentes dentro de las figuras.
+\item Colocar tablas y figuras de ejemplo que se expandan a 2 columnas.
 \item Probar la clase en combinación con otros paquetes y ver si no da algún conflicto.
 \item Probar con los encargados de la editorial de la DIGI si pueden importar el texto a su programa.
 \end{enumerate}
 
-\section{Casacas solo de relleno}
-\lipsum
 
 
 

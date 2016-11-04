@@ -30,4 +30,3 @@ clean:
 	@if [ -f $(TEXFILE).fff ]; then rm $(TEXFILE).fff; fi; 
 	@if [ -f $(TEXFILE).synctex.gz ]; then rm $(TEXFILE).synctex.gz; fi; 
 	@if [ -f $(TEXFILE).out ]; then rm $(TEXFILE).out; fi; 
-	@if [ -f $(TEXFILE).pdf ]; then rm $(TEXFILE).pdf; fi; 
