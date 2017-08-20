@@ -204,9 +204,9 @@
    	  }
    	  %% Fin del ajuste
       \@ifundefined{def@man}{%
-        \defbibheading{bibliography}{\section*{\normalfont\refname}}%
+        %\defbibheading{bibliography}{\section*{\normalfont\refname}}%
       }{%
-        \defbibheading{bibliography}{\section*{\newpage\normalfont\refname}}%
+        %\defbibheading{bibliography}{\section*{\newpage\normalfont\refname}}%
       }
       \ClassInfo{ctsDIGI}{The selected bibliography package, biblatex, has been loaded}
     }
@@ -677,11 +677,13 @@
 
 \renewcommand{\section}{\@startsection {section}{1}{\z@}%
     {\b@level@one@skip}{\e@level@one@skip}%
-    {\centering\normalfont\normalsize\bfseries}}
+    {\centering\normalfont\large\bfseries\color{\@pcolor}}}
+
 
 \renewcommand{\subsection}{\@startsection{subsection}{2}{\z@}%
     {\b@level@two@skip}{\e@level@two@skip}%
-    {\normalfont\normalsize\bfseries}}
+    {\normalfont\normalsize\bfseries\leavevmode\color{\@pcolor}}}
+
 
 
 \newcommand*{\addperi}[1]{#1.}
