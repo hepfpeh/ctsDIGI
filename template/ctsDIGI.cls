@@ -1450,6 +1450,7 @@
 \renewcommand\ctsDIGIprintbibliography{\printbibliography}
 
 
+\RequirePackage{lettrine}
 \RequirePackage{color}
 \RequirePackage[dvipsnames]{xcolor}
 
