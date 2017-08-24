@@ -1693,6 +1693,9 @@ Art\'{\i}culo Cient\'{\i}fico/ Scientific Article
 \renewcommand{\footnotesize}{\fontsize{8}{9.6}\selectfont}
 % redefinir LARGE
 \renewcommand{\LARGE}{\fontsize{16}{19.2}\selectfont}
+% letra grande al inicio del parrafo
+\newcommand{\bl}[1]{\lettrine[findent=-2pt]{#1}{ }}
+
 
 \setlength{\footnotesep}{0.2813in}
 \setlength{\topmargin}{-0.275in}
