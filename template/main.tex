@@ -65,16 +65,16 @@ a^2 = b^2 + c^2 -2bc\cos\theta
 \begin{center}
 \caption{Esta es la descripción (\emph{Caption}) de la tabla} \label{table:resumen}
 \begin{threeparttable}
-{\small
+{\sizeNueveymedio
 \begin{tabular}{c c c}
-\toprule
+\hlinec
 Columna 1 & Columna 2 & Columna 3 \tnote{$^\diamond$} \\
-\midrule
+\hlinec
 Fila 1	& $m$&	1\\
 Fila 1	&$q$&	2 \tnote{$^\ddag$} \\
 Fila 1	&$s$&	3\\
 Fila 1	&$\tau$ & 4\\
-\bottomrule
+\hlinec
 \end{tabular}}
 \smallskip
 {\scriptsize
@@ -107,4 +107,5 @@ Fila 1	&$\tau$ & 4\\
 
 \ctsDIGIprintbibliography
 
+\par\leavevmode
 \end{document}
