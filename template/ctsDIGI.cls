@@ -375,7 +375,7 @@
 \def\rheadname{T\'{\i}tulo corto}
 \def\acksname{Nota del autor}
 \def\keywordenname{Keywords}
-\def\keywordspname{Palabras clave}
+\def\keywordspname{Palabras claves}
 \def\notesname{Notas}
 \def\contactname{*Direcci\'on para recibir correspondencia}
 \def\abstractenname{Abstract}
@@ -1453,8 +1453,10 @@
 \RequirePackage{color}
 \RequirePackage[dvipsnames]{xcolor}
 
+\definecolor{VerdeDigi}{HTML}{00AF66}
 \newcommand\@pcolor{}
-\renewcommand{\@pcolor}{OliveGreen}
+%\renewcommand{\@pcolor}{OliveGreen}
+\renewcommand{\@pcolor}{VerdeDigi}
 
 \IfFileExists{flushend.sty}{\RequirePackage{flushend}}{}
 
@@ -1531,33 +1533,34 @@
 \twocolumn[  % anything appearing within the brackets is set in one-column mode
   \vspace{0.03in}
 \begin{flushright}
-\Large
+\large
 \color{\@pcolor}
 Art\'{\i}culo Cient\'{\i}fico/ Scientific Article
 \end{flushright}
   \begin{center}
   \vspace{-0.5cm}
   {\bf \LARGE \@titlesp}\\
-  \vspace{-0.15in}
+  %\vspace{-0.15in}
 
 \@ifundefined{apaSix@maskauthoridentity}{%  BDB
 %%%Editado para alinear autores
+
       \@ifundefined{@authorTwo}{
     % one author-affiliation
-      \put@one@authaffil{\@author}{\@affil}}{
+      \put@one@authaffil{\sizeOnce \color{\@pcolor} \@author}{\small \@affil}}{
       \@ifundefined{@authorThree}{
     % two authors-affiliations
-      \put@two@authaffil{\@authorOne}{\@affilOne}{\@authorTwo}{\@affilTwo}}{
+      \put@two@authaffil{\sizeOnce \color{\@pcolor} \@authorOne}{\small \@affilOne}{\sizeOnce \color{\@pcolor} \@authorTwo}{\small \@affilTwo}}{
       \@ifundefined{@authorFour}{
     % three authors-affiliations
       \@ifundefined{@twofirst}{
     % first one, then two
-      \put@one@authaffil{\@authorOne}{\@affilOne}\vspace{-0.15in}\\
-      \put@two@authaffil{\@authorTwo}{\@affilTwo}{\@authorThree}{\@affilThree}
+      \put@one@authaffil{\sizeOnce \color{\@pcolor} \@authorOne}{\small \@affilOne}\vspace{-0.15in}\\
+      \put@two@authaffil{\sizeOnce \color{\@pcolor} \@authorTwo}{\small \@affilTwo}{\sizeOnce \color{\@pcolor} \@authorThree}{\small \@affilThree}
       }{
     % first two, then one
-      \put@two@authaffil{\@authorOne}{\@affilOne}{\@authorTwo}{\@affilTwo}\vspace{-0.15in}\\
-      \put@one@authaffil{\@authorThree}{\@affilThree}
+      \put@two@authaffil{\sizeOnce \color{\@pcolor} \@authorOne}{\small \@affilOne}{\sizeOnce \color{\@pcolor} \@authorTwo}{\small \@affilTwo}\vspace{-0.15in}\\
+      \put@one@authaffil{\sizeOnce \color{\@pcolor} \@authorThree}{\small \@affilThree}
       }}{
       \@ifundefined{@authorFive}{ % 2006/01/05 as contributed by Aaron Geller
     % four authors-affiliations
@@ -1591,8 +1594,8 @@ Art\'{\i}culo Cient\'{\i}fico/ Scientific Article
  \end{center}
 %%%Informacion del autor para dirigir correspondencia
 \@ifundefined{@mail}
-{{\small \color{\@pcolor}\par  \vspace{-0.07in} \hrulefill}}{
-{\small \color{\@pcolor} \noindent *Autor al que se dirige la correspondencia: {\small \@mail} \par  \vspace{-0.07in} \hrulefill}} %%%a agregar campo para correo electronico una vez implementado.
+{{\footnotesize \color{\@pcolor}\par  \vspace{-0.07in} \hrulefill}}{
+{\footnotesize \color{\@pcolor} \noindent *Autor al que se dirige la correspondencia: {\footnotesize \@mail} \par  \vspace{-0.07in} \hrulefill}} %%%a agregar campo para correo electronico una vez implementado.
 %%%Agregando fechas administrativas al encabezado
 \begin{flushright}
 {\scriptsize
@@ -1601,12 +1604,12 @@ Art\'{\i}culo Cient\'{\i}fico/ Scientific Article
 \end{flushright}
  \@ifundefined{@abstractsp}
   {\par }
-  {{\Large \color{\@pcolor} Resumen \par \vspace{-0.07in} \hrulefill} \vspace{0.07in} %%% Titulo del resumen
+  {{\large \color{\@pcolor} Resumen \par \vspace{-0.07in} \hrulefill} \vspace{0.07in} %%% Titulo del resumen
  \par
  \noindent \@abstractsp \par
 {\color{\@pcolor}\hrulefill}
-    {\small \@ifundefined{@keywordssp}{}{%
-      \par\vspace{0.07in}\raggedright\textit{\color{\@pcolor} \keywordspname:} \@keywordssp%
+    {\footnotesize \@ifundefined{@keywordssp}{}{%
+      \par\vspace{0.07in}\raggedright{\color{\@pcolor} \keywordspname:} \@keywordssp%
      }%
    }
    \vspace{0.24in}%
@@ -1614,12 +1617,12 @@ Art\'{\i}culo Cient\'{\i}fico/ Scientific Article
 
  \@ifundefined{@abstracten}
   {\par }
-  {{\Large \color{\@pcolor} Abstract \par \vspace{-0.07in} \hrulefill} \vspace{0.07in} %%% Titulo del resumen
+  {{\large \color{\@pcolor} Abstract \par \vspace{-0.07in} \hrulefill} \vspace{0.07in} %%% Titulo del resumen
  \par
  \noindent \@abstracten \par
 {\color{\@pcolor}\hrulefill}
-    {\small \@ifundefined{@keywordsen}{}{%
-      \par\vspace{0.07in}\raggedright\textit{\color{\@pcolor} \keywordenname:} \@keywordsen%
+    {\footnotesize \@ifundefined{@keywordsen}{}{%
+      \par\vspace{0.07in}\raggedright{\color{\@pcolor} \keywordenname:} \@keywordsen%
      }%
    }
    \vspace{0.24in}%
@@ -1684,11 +1687,19 @@ Art\'{\i}culo Cient\'{\i}fico/ Scientific Article
 
 \newcommand\stiny{\@setfontsize\stiny\@vipt\@viipt}
 
+% definir fontsize 11pt
+\newcommand{\sizeOnce}{\fontsize{11}{13.2}\selectfont}
+% redefinir footnotesize
+\renewcommand{\footnotesize}{\fontsize{8}{9.6}\selectfont}
+% redefinir LARGE
+\renewcommand{\LARGE}{\fontsize{16}{19.2}\selectfont}
+
 \setlength{\footnotesep}{0.2813in}
 \setlength{\topmargin}{-0.275in}
 \addtolength{\headheight}{0.02in}
 \addtolength{\headsep}{-0.156in}
-\setlength{\oddsidemargin}{\z@}
+%\setlength{\oddsidemargin}{\z@}
+\setlength{\oddsidemargin}{0.25in}
 \setlength{\evensidemargin}{\z@}
 \setlength{\textwidth}{6.94in}
 \addtolength{\textwidth}{-0.7in}
