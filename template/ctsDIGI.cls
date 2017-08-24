@@ -1550,20 +1550,20 @@ Art\'{\i}culo Cient\'{\i}fico/ Scientific Article
 
       \@ifundefined{@authorTwo}{
     % one author-affiliation
-      \put@one@authaffil{\sizeOnce \color{\@pcolor} \@author}{\small \@affil}}{
+      \put@one@authaffil{\sizeOnce \color{\@pcolor} \@author \vspace{13.2pt}}{\small \@affil}}{
       \@ifundefined{@authorThree}{
     % two authors-affiliations
-      \put@two@authaffil{\sizeOnce \color{\@pcolor} \@authorOne}{\small \@affilOne}{\sizeOnce \color{\@pcolor} \@authorTwo}{\small \@affilTwo}}{
+      \put@two@authaffil{\sizeOnce \color{\@pcolor} \@authorOne \vspace{13.2pt}}{\small \@affilOne}{\sizeOnce \color{\@pcolor} \@authorTwo \vspace{13.2pt}}{\small \@affilTwo}}{
       \@ifundefined{@authorFour}{
     % three authors-affiliations
       \@ifundefined{@twofirst}{
     % first one, then two
-      \put@one@authaffil{\sizeOnce \color{\@pcolor} \@authorOne}{\small \@affilOne}\vspace{-0.15in}\\
-      \put@two@authaffil{\sizeOnce \color{\@pcolor} \@authorTwo}{\small \@affilTwo}{\sizeOnce \color{\@pcolor} \@authorThree}{\small \@affilThree}
+      \put@one@authaffil{\sizeOnce \color{\@pcolor} \@authorOne \vspace{13.2pt}}{\small \@affilOne}\vspace{-0.15in}\\
+      \put@two@authaffil{\sizeOnce \color{\@pcolor} \@authorTwo \vspace{13.2pt}}{\small \@affilTwo}{\sizeOnce \color{\@pcolor} \@authorThree \vspace{13.2pt}}{\small \@affilThree}
       }{
     % first two, then one
-      \put@two@authaffil{\sizeOnce \color{\@pcolor} \@authorOne}{\small \@affilOne}{\sizeOnce \color{\@pcolor} \@authorTwo}{\small \@affilTwo}\vspace{-0.15in}\\
-      \put@one@authaffil{\sizeOnce \color{\@pcolor} \@authorThree}{\small \@affilThree}
+      \put@two@authaffil{\sizeOnce \color{\@pcolor} \@authorOne \vspace{13.2pt}}{\small \@affilOne}{\sizeOnce \color{\@pcolor} \@authorTwo \vspace{13.2pt}}{\small \@affilTwo}\vspace{-0.15in}\\
+      \put@one@authaffil{\sizeOnce \color{\@pcolor} \@authorThree \vspace{13.2pt}}{\small \@affilThree}
       }}{
       \@ifundefined{@authorFive}{ % 2006/01/05 as contributed by Aaron Geller
     % four authors-affiliations
@@ -1713,7 +1713,7 @@ Art\'{\i}culo Cient\'{\i}fico/ Scientific Article
 \setlength{\textheight}{8.9in}
 \setlength{\columnwidth}{8.5cm}
 \setlength{\columnsep}{0.25in}
-\setlength{\parindent}{0.15625in}
+\setlength{\parindent}{0.3in}
 %%\setlength{\parskip}{0in}
 \setlength{\textfloatsep}{0.35in}
 
