@@ -682,7 +682,7 @@
 
 \renewcommand{\subsection}{\@startsection{subsection}{2}{\z@}%
     {\b@level@two@skip}{\e@level@two@skip}%
-    {\normalfont\normalsize\bfseries\leavevmode\color{\@pcolor}}}
+    {\noindent\normalfont\sizeOnce\bfseries\leavevmode\color{\@pcolor}}}
 
 
 
@@ -1693,12 +1693,18 @@ Art\'{\i}culo Cient\'{\i}fico/ Scientific Article
 
 % definir fontsize 11pt
 \newcommand{\sizeOnce}{\fontsize{11}{13.2}\selectfont}
+% definir fontsize 9.5pt
+\newcommand{\sizeNueveymedio}{\fontsize{9}{11.4}\selectfont}
 % redefinir footnotesize
 \renewcommand{\footnotesize}{\fontsize{8}{9.6}\selectfont}
 % redefinir LARGE
 \renewcommand{\LARGE}{\fontsize{16}{19.2}\selectfont}
 % letra grande al inicio del parrafo
 \newcommand{\bl}[1]{\lettrine[findent=-2pt]{#1}{ }}
+
+\setlength{\arrayrulewidth}{0.5pt}
+
+\newcommand{\hlinec}{\arrayrulecolor{\@pcolor}\hline}
 
 
 \setlength{\footnotesep}{0.2813in}
