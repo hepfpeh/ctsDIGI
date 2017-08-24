@@ -1455,7 +1455,7 @@
 \RequirePackage{color}
 \RequirePackage[dvipsnames]{xcolor}
 
-\definecolor{VerdeDigi}{HTML}{00AF66}
+\definecolor{VerdeDigi}{HTML}{00664F}
 \newcommand\@pcolor{}
 %\renewcommand{\@pcolor}{OliveGreen}
 \renewcommand{\@pcolor}{VerdeDigi}
