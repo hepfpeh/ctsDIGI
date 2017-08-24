@@ -1532,6 +1532,7 @@
  \@ifundefined{r@headl}{\def\r@headl{\protect\MakeUppercase{\protect\scriptsize\@author}}}{}
 
 \pagestyle{empty}
+\addtolength{\hoffset}{-0.25in}
 \twocolumn[  % anything appearing within the brackets is set in one-column mode
   \vspace{0.03in}
 \begin{flushright}
@@ -1631,6 +1632,7 @@ Art\'{\i}culo Cient\'{\i}fico/ Scientific Article
   }
 
  ] % end of \twocolumn[]
+\addtolength{\hoffset}{0.25in}
 
 %%%Fin de modificacion
 
