@@ -1531,6 +1531,7 @@
  \@ifundefined{r@headr}{\def\r@headr{\protect\MakeUppercase{\protect\scriptsize\@titlesp}}}{}
  \@ifundefined{r@headl}{\def\r@headl{\protect\MakeUppercase{\protect\scriptsize\@author}}}{}
 
+\pagestyle{empty}
 \twocolumn[  % anything appearing within the brackets is set in one-column mode
   \vspace{0.03in}
 \begin{flushright}
@@ -1596,7 +1597,7 @@ Art\'{\i}culo Cient\'{\i}fico/ Scientific Article
 %%%Informacion del autor para dirigir correspondencia
 \@ifundefined{@mail}
 {{\footnotesize \color{\@pcolor}\par  \vspace{-0.07in} \hrulefill}}{
-{\footnotesize \color{\@pcolor} \noindent *Autor al que se dirige la correspondencia: {\footnotesize \@mail} \par  \vspace{-0.07in} \hrulefill}} %%%a agregar campo para correo electronico una vez implementado.
+{\footnotesize \color{\@pcolor} \noindent \textbf{*Autor al que se dirige la correspondencia:} {\footnotesize \@mail} \par  \vspace{-0.07in} \hrulefill}} %%%a agregar campo para correo electronico una vez implementado.
 %%%Agregando fechas administrativas al encabezado
 \begin{flushright}
 {\scriptsize
