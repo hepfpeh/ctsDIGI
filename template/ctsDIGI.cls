@@ -1449,7 +1449,7 @@
 }
 \renewcommand\ctsDIGIprintbibliography{\printbibliography}
 
-
+\RequirePackage{mathptmx}
 \RequirePackage{lettrine}
 \RequirePackage{colortbl}
 \RequirePackage{color}
