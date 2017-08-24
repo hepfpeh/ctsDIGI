@@ -1601,7 +1601,7 @@ Art\'{\i}culo Cient\'{\i}fico/ Scientific Article
 %%%Agregando fechas administrativas al encabezado
 \begin{flushright}
 {\scriptsize
-{\color{\@pcolor} Recibido: } \@recibido \hspace{1ex} /  \hspace{1ex} {\color{\@pcolor} Fecha de 1era revisi\'on:  } \@frev   \hspace{1ex} / \hspace{1ex} {\color{\@pcolor} Fecha de 2nda revisi\'on:  } \@srev \par
+{\color{\@pcolor} Recibido: } \@recibido \hspace{1ex} /  \hspace{1ex} {\color{\@pcolor} Fecha de 1era revisi\'on:  } \@frev   \hspace{1ex} / \hspace{1ex} {\color{\@pcolor} Fecha de 2nda revisi\'on:  } \@srev
 {\color{\@pcolor} Aceptado: } \@aceptado \hspace{1ex} /  \hspace{1ex} {\color{\@pcolor} Disponible en l\'{\i}nea: } \@enlinea \par}
 \end{flushright}
  \@ifundefined{@abstractsp}
