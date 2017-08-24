@@ -1451,6 +1451,7 @@
 
 
 \RequirePackage{lettrine}
+\RequirePackage{colortbl}
 \RequirePackage{color}
 \RequirePackage[dvipsnames]{xcolor}
 
