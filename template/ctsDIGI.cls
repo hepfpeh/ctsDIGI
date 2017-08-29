@@ -1459,6 +1459,12 @@
 \newcommand\@pcolor{}
 %\renewcommand{\@pcolor}{OliveGreen}
 \renewcommand{\@pcolor}{VerdeDigi}
+\newcommand{\hruleA}{\hrulefill{\leavevmode\leaders\hrule height 1pt\hfill\kern\z@}}
+
+% define linea con grosor variable en pts
+\def\vhrulefill#1{\leavevmode\leaders\hrule\@height#1\hfill \kern\z@}
+
+
 
 \IfFileExists{flushend.sty}{\RequirePackage{flushend}}{}
 
@@ -1538,6 +1544,7 @@
   \vspace{0.03in}
 \begin{flushright}
 \large
+\bf
 \color{\@pcolor}
 Art\'{\i}culo Cient\'{\i}fico/ Scientific Article
 \end{flushright}
@@ -1608,10 +1615,10 @@ Art\'{\i}culo Cient\'{\i}fico/ Scientific Article
 \end{flushright}
  \@ifundefined{@abstractsp}
   {\par }
-  {{\large \color{\@pcolor} Resumen \par \vspace{-0.07in} \hrulefill} \vspace{0.07in} %%% Titulo del resumen
- \par
+  {{\large \bf \color{\@pcolor} Resumen \par \vspace{-0.07in} \hrulefill} \vspace{0.07in} %%% Titulo del resumen
+ %\par  % elimina espacio al inicio de resumen
  \noindent \@abstractsp \par
-{\color{\@pcolor}\hrulefill}
+{\color{\@pcolor}\vhrulefill{1pt}}
     {\footnotesize \@ifundefined{@keywordssp}{}{%
       \par\vspace{0.07in}\raggedright{\color{\@pcolor} \keywordspname:} \@keywordssp%
      }%
@@ -1621,10 +1628,10 @@ Art\'{\i}culo Cient\'{\i}fico/ Scientific Article
 
  \@ifundefined{@abstracten}
   {\par }
-  {{\large \color{\@pcolor} Abstract \par \vspace{-0.07in} \hrulefill} \vspace{0.07in} %%% Titulo del resumen
- \par
+  {{\large \bf \color{\@pcolor} Abstract \par \vspace{-0.07in} \hrulefill} \vspace{0.07in} %%% Titulo del resumen
+ %\par % elimina espacio al inicio de resumen
  \noindent \@abstracten \par
-{\color{\@pcolor}\hrulefill}
+{\color{\@pcolor}\vhrulefill{1pt}}
     {\footnotesize \@ifundefined{@keywordsen}{}{%
       \par\vspace{0.07in}\raggedright{\color{\@pcolor} \keywordenname:} \@keywordsen%
      }%
@@ -1717,7 +1724,7 @@ Art\'{\i}culo Cient\'{\i}fico/ Scientific Article
 \setlength{\evensidemargin}{\z@}
 \setlength{\textwidth}{6.94in}
 \addtolength{\textwidth}{-0.7in}
-\setlength{\textheight}{8.9in}
+\setlength{\textheight}{8.4in} % altura de texto DIGI
 \setlength{\columnwidth}{8.5cm}
 \setlength{\columnsep}{0.25in}
 \setlength{\parindent}{0.3in}
