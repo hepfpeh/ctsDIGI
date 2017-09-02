@@ -87,6 +87,16 @@ Esta opción se modificó para parecerse lo más posible a la versión online de
 
 Se debe tomar en cuenta que el aspecto final del artículo será decidido por los editores de la revista y no coincidirá al $100\%$ con este formato.
 
+El formato de vista preliminar trabaja conjuntamente con las opciones {\tt negro} y {\tt verde}. Dado que el artículo en su versión final está impreso en colores verde y negro (escala de grises para las fotografías), estas opciones han sido incluidas para separar los colores verde y negro. Al utilizar
+\begin{verbatim}
+\documentclass[preview,negro]{ctsDIGI}
+\end{verbatim}
+el archivo pdf generado contiene unicamente el texto en color negro, eliminando el texto en color verde. Por el contrario, al colocar
+\begin{verbatim}
+\documentclass[preview,verde]{ctsDIGI}
+\end{verbatim}
+se elimina todo el texto en color negro y queda solo el texto en color verde. 
+
 \subsection{Formato para envío de artículos}
 Para habilitar esta salida se pasa la opción \texttt{submit} al momento de llamar la clase:
 \begin{verbatim}
@@ -108,6 +118,7 @@ Las principales modificaciones respecto del formato \texttt{apa6} son las siguie
 \item Se numeran las líneas en el margen izquierdo a partir del abstract (resumen) y se finalizan antes de la bibliografía.
 \item En las citas bibliográficas dentro del texto con multiples autores aparece \& en lugar de \emph{y}.
 \end{itemize}
+Las opciones {\tt negro} y {\tt verde} no tienen efecto con la opción {\tt submit}.
 
 \subsection{Ecuaciones y \texttt{amsmath}}
 Cuando se utiliza la opción \texttt{submit} para la salida existe un problema de conflicto entre los paquetes \href{https://www.ctan.org/pkg/lineno}{\texttt{lineno}} y\href{https://www.ctan.org/pkg/amsmath}{\texttt{amsmath}} ya que ambos redefinen los entornos de ecuaciones. Esto hace que los párrafos que contienen ecuaciones no sean numerados. Para resolverlo se incluye en la clase la opción \texttt{amsmath} que llama a los paquetes en el orden adecuado para solventar el conflicto. La forma de incluir a \texttt{amsmath} será:

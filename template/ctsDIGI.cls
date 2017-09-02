@@ -38,6 +38,14 @@
   \def\def@jou{\@joumode}
 }
 
+\DeclareOption{negro}{%
+  \def\def@neg{\@negro}
+}
+
+\DeclareOption{verde}{%
+  \def\def@ver{\@verde}
+}
+
 %%\DeclareOption{doc}{%
 %%  \def\def@doc{\@docmode}
 %%}
@@ -177,6 +185,11 @@
     \LoadClass[\apaSix@ptsize]{article}
   \fi
 }
+
+% definir fontsize 11pt
+\newcommand{\sizeOnce}{\fontsize{11}{13.2}\selectfont}
+% definir fontsize 9.5pt
+\newcommand{\sizeNueveymedio}{\fontsize{9}{11.4}\selectfont}
 
 \@ifundefined{def@apacite}{%
   \@ifundefined{def@natbib}{%
@@ -355,7 +368,7 @@
          \hskip .01\hsize\@plus-\hsize\@minus.01\hsize
          \hskip 1em\@plus .3em
         \endgroup\fi
-        \tnote{##1}\,\ignorespaces}%
+        \tnote{\color{\@tcolor} ##1}\,\ignorespaces}%
      \let\TPToverlap\relax
      \def\endtablenotes{\par}%
   }
@@ -716,18 +729,22 @@
     \DeclareCaptionLabelFormat{tablelabel}{\hspace{-\parindent}\raggedright#1 #2}
     \DeclareCaptionLabelFormat{figurelabel}{\hspace{-\parindent}\raggedright\textit{#1 #2}}
     \DeclareCaptionTextFormat{tabletext}{\hspace{-\parindent}\raggedright\textit{#1}}
+    \DeclareCaptionTextFormat{figuretext}{\hspace{-\parindent}{\color{\@tcolor} #1}}
+    \DeclareCaptionLabelSeparator{figureSeparator}{\color{\@tcolor}. }
 }{% jou
-    \DeclareCaptionLabelFormat{tablelabel}{\hspace{-\parindent}#1 #2}
-    \DeclareCaptionLabelFormat{figurelabel}{\hspace{-\parindent}\textit{#1 #2}}
-    \DeclareCaptionTextFormat{tabletext}{\hspace{-\parindent
-}\textit{#1}}
+    \DeclareCaptionLabelFormat{tablelabel}{\hspace{-\parindent}{\sizeNueveymedio \color{\@tcolor} #1 #2}}
+    \DeclareCaptionLabelFormat{figurelabel}{\hspace{-\parindent}\textit{\sizeNueveymedio \color{\@tcolor} #1 #2}}
+    \DeclareCaptionTextFormat{tabletext}{\hspace{-\parindent}\textit{\sizeNueveymedio \color{\@tcolor} #1}}
+    \DeclareCaptionTextFormat{figuretext}{\hspace{-\parindent}{\sizeNueveymedio \color{\@tcolor} #1}}
+    \DeclareCaptionLabelSeparator{figureSeparator}{\color{\@tcolor}. }
 }{% doc
     \DeclareCaptionLabelFormat{tablelabel}{\hspace{-\parindent}#1 #2}
     \DeclareCaptionLabelFormat{figurelabel}{\hspace{-\parindent}\textit{#1 #2}}
     \DeclareCaptionTextFormat{tabletext}{\hspace{-\parindent}\textit{#1}}
 }
 \captionsetup[table]{position=above,skip=0pt,labelformat=tablelabel,labelsep=newline,textformat=tabletext}
-\captionsetup[figure]{position=below,skip=0pt,labelformat=figurelabel,labelsep=period}
+\captionsetup[figure]{position=below,skip=0pt,labelformat=figurelabel,labelsep=figureSeparator,textformat=figuretext}
+
 
 \setlength{\belowcaptionskip}{0pt}
 
@@ -920,7 +937,7 @@
 \newcommand\thickline{\hline\hline}
 \renewcommand\footnoterule{%
   \kern-3\p@
-  \hrule height0.125pt width.5in
+  \color{\@tcolor}\hrule height0.125pt width.5in
   \kern2.6\p@}
 
 \let\apaSixtabular\tabular
@@ -1049,6 +1066,13 @@
 \def\leftheader#1{\def\r@headl{#1}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\newcommand{\shorttitle}[1]{\def\@shorttitle{#1}}
+
+
+
+\newcommand\@tcolor{black}
+\newcommand\@pcolor{black}
+\newcommand{\bl}{}
+\newcommand{\hlinec}{\hline}
 
 \raggedright
 
@@ -1453,13 +1477,35 @@
 \RequirePackage{lettrine}
 \RequirePackage{colortbl}
 \RequirePackage{color}
+\RequirePackage{mathtools}
 \RequirePackage[dvipsnames]{xcolor}
 
 \definecolor{VerdeDigi}{HTML}{00664F}
+\newcommand\@tcolor{black}
 \newcommand\@pcolor{}
-%\renewcommand{\@pcolor}{OliveGreen}
-\renewcommand{\@pcolor}{VerdeDigi}
+
 \newcommand{\hruleA}{\hrulefill{\leavevmode\leaders\hrule height 1pt\hfill\kern\z@}}
+
+
+\@ifundefined{def@neg}{%
+  \renewcommand{\@pcolor}{VerdeDigi}}{%
+  \renewcommand{\@pcolor}{white}}
+
+\@ifundefined{def@ver}{%
+  \renewcommand{\@tcolor}{black}}{%
+  \renewcommand{\@tcolor}{white}
+  \let\oldincludegraphics\includegraphics
+  \renewcommand{\includegraphics}[2][width=\columnwidth]{\phantom{\oldincludegraphics[#1]{#2}}}%
+}
+
+
+\let\oldtable\table
+\let\endoldtable\endtable
+\renewenvironment{table}{\oldtable\color{\@tcolor}\sizeNueveymedio}{\endoldtable}
+
+
+
+
 
 % define linea con grosor variable en pts
 \def\vhrulefill#1{\leavevmode\leaders\hrule\@height#1\hfill \kern\z@}
@@ -1550,7 +1596,7 @@ Art\'{\i}culo Cient\'{\i}fico/ Scientific Article
 \end{flushright}
   \begin{center}
   \vspace{-0.5cm}
-  {\bf \LARGE \@titlesp}\\
+  {\bf \LARGE \color{\@tcolor} \@titlesp}\\
   %\vspace{-0.15in}
 
 \@ifundefined{apaSix@maskauthoridentity}{%  BDB
@@ -1558,20 +1604,20 @@ Art\'{\i}culo Cient\'{\i}fico/ Scientific Article
 
       \@ifundefined{@authorTwo}{
     % one author-affiliation
-      \put@one@authaffil{\sizeOnce \color{\@pcolor} \@author \vspace{13.2pt}}{\small \@affil}}{
+      \put@one@authaffil{\sizeOnce \color{\@pcolor} \@author \vspace{13.2pt}}{\small \color{\@tcolor} \@affil}}{
       \@ifundefined{@authorThree}{
     % two authors-affiliations
-      \put@two@authaffil{\sizeOnce \color{\@pcolor} \@authorOne \vspace{13.2pt}}{\small \@affilOne}{\sizeOnce \color{\@pcolor} \@authorTwo \vspace{13.2pt}}{\small \@affilTwo}}{
+      \put@two@authaffil{\sizeOnce \color{\@pcolor} \@authorOne \vspace{13.2pt}}{\small \color{\@tcolor} \@affilOne}{\sizeOnce \color{\@pcolor} \@authorTwo \vspace{13.2pt}}{\small \color{\@tcolor} \@affilTwo}}{
       \@ifundefined{@authorFour}{
     % three authors-affiliations
       \@ifundefined{@twofirst}{
     % first one, then two
-      \put@one@authaffil{\sizeOnce \color{\@pcolor} \@authorOne \vspace{13.2pt}}{\small \@affilOne}\vspace{-0.15in}\\
-      \put@two@authaffil{\sizeOnce \color{\@pcolor} \@authorTwo \vspace{13.2pt}}{\small \@affilTwo}{\sizeOnce \color{\@pcolor} \@authorThree \vspace{13.2pt}}{\small \@affilThree}
+      \put@one@authaffil{\sizeOnce \color{\@pcolor} \@authorOne \vspace{13.2pt}}{\small \color{\@tcolor} \@affilOne}\vspace{-0.15in}\\
+      \put@two@authaffil{\sizeOnce \color{\@pcolor} \@authorTwo \vspace{13.2pt}}{\small \color{\@tcolor} \@affilTwo}{\sizeOnce \color{\@pcolor} \@authorThree \vspace{13.2pt}}{\small \color{\@tcolor} \@affilThree}
       }{
     % first two, then one
-      \put@two@authaffil{\sizeOnce \color{\@pcolor} \@authorOne \vspace{13.2pt}}{\small \@affilOne}{\sizeOnce \color{\@pcolor} \@authorTwo \vspace{13.2pt}}{\small \@affilTwo}\vspace{-0.15in}\\
-      \put@one@authaffil{\sizeOnce \color{\@pcolor} \@authorThree \vspace{13.2pt}}{\small \@affilThree}
+      \put@two@authaffil{\sizeOnce \color{\@pcolor} \@authorOne \vspace{13.2pt}}{\small \color{\@tcolor} \@affilOne}{\sizeOnce \color{\@pcolor} \@authorTwo \vspace{13.2pt}}{\small \color{\@tcolor} \@affilTwo}\vspace{-0.15in}\\
+      \put@one@authaffil{\sizeOnce \color{\@pcolor} \@authorThree \vspace{13.2pt}}{\small \color{\@tcolor} \@affilThree}
       }}{
       \@ifundefined{@authorFive}{ % 2006/01/05 as contributed by Aaron Geller
     % four authors-affiliations
@@ -1610,17 +1656,20 @@ Art\'{\i}culo Cient\'{\i}fico/ Scientific Article
 %%%Agregando fechas administrativas al encabezado
 \begin{flushright}
 {\scriptsize
-{\color{\@pcolor} Recibido: } \@recibido \hspace{1ex} /  \hspace{1ex} {\color{\@pcolor} Fecha de 1era revisi\'on:  } \@frev   \hspace{1ex} / \hspace{1ex} {\color{\@pcolor} Fecha de 2nda revisi\'on:  } \@srev
-{\color{\@pcolor} Aceptado: } \@aceptado \hspace{1ex} /  \hspace{1ex} {\color{\@pcolor} Disponible en l\'{\i}nea: } \@enlinea \par}
+{\color{\@pcolor} Recibido: } {\color{\@tcolor} \@recibido \hspace{1ex} /}  \hspace{1ex} 
+{\color{\@pcolor} Fecha de 1era revisi\'on:  } {\color{\@tcolor} \@frev \hspace{1ex} /}\hspace{1ex} 
+{\color{\@pcolor} Fecha de 2nda revisi\'on:  } {\color{\@tcolor} \@srev}
+{\color{\@pcolor} Aceptado: } {\color{\@tcolor} \@aceptado \hspace{1ex} /} \hspace{1ex} 
+{\color{\@pcolor} Disponible en l\'{\i}nea: } {\color{\@tcolor} \@enlinea} \par}
 \end{flushright}
  \@ifundefined{@abstractsp}
   {\par }
   {{\large \bf \color{\@pcolor} Resumen \par \vspace{-0.07in} \hrulefill} \vspace{0.07in} %%% Titulo del resumen
  %\par  % elimina espacio al inicio de resumen
- \noindent \@abstractsp \par
+ \noindent {\color{\@tcolor} \@abstractsp} \par
 {\color{\@pcolor}\vhrulefill{1pt}}
     {\footnotesize \@ifundefined{@keywordssp}{}{%
-      \par\vspace{0.07in}\raggedright{\color{\@pcolor} \keywordspname:} \@keywordssp%
+      \par\vspace{0.07in}\raggedright{\color{\@pcolor} \keywordspname:} {\color{\@tcolor} \@keywordssp}%
      }%
    }
    \vspace{0.24in}%
@@ -1630,10 +1679,10 @@ Art\'{\i}culo Cient\'{\i}fico/ Scientific Article
   {\par }
   {{\large \bf \color{\@pcolor} Abstract \par \vspace{-0.07in} \hrulefill} \vspace{0.07in} %%% Titulo del resumen
  %\par % elimina espacio al inicio de resumen
- \noindent \@abstracten \par
+ \noindent {\color{\@tcolor} \@abstracten} \par
 {\color{\@pcolor}\vhrulefill{1pt}}
     {\footnotesize \@ifundefined{@keywordsen}{}{%
-      \par\vspace{0.07in}\raggedright{\color{\@pcolor} \keywordenname:} \@keywordsen%
+      \par\vspace{0.07in}\raggedright{\color{\@pcolor} \keywordenname:} {\color{\@tcolor} \@keywordsen}%
      }%
    }
    \vspace{0.24in}%
@@ -1642,6 +1691,8 @@ Art\'{\i}culo Cient\'{\i}fico/ Scientific Article
  ] % end of \twocolumn[]
 \addtolength{\hoffset}{0.25in}
 
+% Este es el color para el texto
+\color{\@tcolor}
 %%%Fin de modificacion
 
  \pagenumbering{arabic}
@@ -1699,10 +1750,6 @@ Art\'{\i}culo Cient\'{\i}fico/ Scientific Article
 
 \newcommand\stiny{\@setfontsize\stiny\@vipt\@viipt}
 
-% definir fontsize 11pt
-\newcommand{\sizeOnce}{\fontsize{11}{13.2}\selectfont}
-% definir fontsize 9.5pt
-\newcommand{\sizeNueveymedio}{\fontsize{9}{11.4}\selectfont}
 % redefinir footnotesize
 \renewcommand{\footnotesize}{\fontsize{8}{9.6}\selectfont}
 % redefinir LARGE
