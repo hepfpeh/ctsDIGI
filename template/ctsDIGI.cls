@@ -1666,7 +1666,7 @@ Art\'{\i}culo Cient\'{\i}fico/ Scientific Article
   {\par }
   {{\large \bf \color{\@pcolor} Resumen \par \vspace{-0.07in} \hrulefill} \vspace{0.07in} %%% Titulo del resumen
  %\par  % elimina espacio al inicio de resumen
- \noindent {\color{\@tcolor} \@abstractsp} \par
+{\noindent \color{\@tcolor} \@abstractsp \par}
 {\color{\@pcolor}\vhrulefill{1pt}}
     {\footnotesize \@ifundefined{@keywordssp}{}{%
       \par\vspace{0.07in}\raggedright{\color{\@pcolor} \keywordspname:} {\color{\@tcolor} \@keywordssp}%
@@ -1679,7 +1679,7 @@ Art\'{\i}culo Cient\'{\i}fico/ Scientific Article
   {\par }
   {{\large \bf \color{\@pcolor} Abstract \par \vspace{-0.07in} \hrulefill} \vspace{0.07in} %%% Titulo del resumen
  %\par % elimina espacio al inicio de resumen
- \noindent {\color{\@tcolor} \@abstracten} \par
+{\noindent \color{\@tcolor} \@abstracten \par}
 {\color{\@pcolor}\vhrulefill{1pt}}
     {\footnotesize \@ifundefined{@keywordsen}{}{%
       \par\vspace{0.07in}\raggedright{\color{\@pcolor} \keywordenname:} {\color{\@tcolor} \@keywordsen}%
