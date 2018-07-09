@@ -213,7 +213,7 @@
       \AtEndPreamble{%
       	\renewcommand*{\finalnamedelim}{%
    			\ifnumgreater{\value{liststop}}{2}{\finalandcomma}{}%
-   			\addspace\&\space}%
+   			\addspace \&\space}%
    	  }
    	  %% Fin del ajuste
       \@ifundefined{def@man}{%
@@ -1595,9 +1595,11 @@
 Art\'{\i}culo Cient\'{\i}fico/ Scientific Article
 \end{flushright}
   \begin{center}
-  \vspace{-0.5cm}
+  \vspace{-0.3cm}
   {\bf \LARGE \color{\@tcolor} \@titlesp}\\
-  %\vspace{-0.15in}
+  \vspace{0.4cm}
+  {\it \large \color{\@tcolor} \@titleen}\\
+  \vspace{-0.10in}
 
 \@ifundefined{apaSix@maskauthoridentity}{%  BDB
 %%%Editado para alinear autores
@@ -1666,7 +1668,7 @@ Art\'{\i}culo Cient\'{\i}fico/ Scientific Article
   {\par }
   {{\large \bf \color{\@pcolor} Resumen \par \vspace{-0.07in} \hrulefill} \vspace{0.07in} %%% Titulo del resumen
  %\par  % elimina espacio al inicio de resumen
-{\noindent \color{\@tcolor} \@abstractsp \par}
+ \noindent {\color{\@tcolor} \@abstractsp \par} 
 {\color{\@pcolor}\vhrulefill{1pt}}
     {\footnotesize \@ifundefined{@keywordssp}{}{%
       \par\vspace{0.07in}\raggedright{\color{\@pcolor} \keywordspname:} {\color{\@tcolor} \@keywordssp}%
@@ -1679,7 +1681,7 @@ Art\'{\i}culo Cient\'{\i}fico/ Scientific Article
   {\par }
   {{\large \bf \color{\@pcolor} Abstract \par \vspace{-0.07in} \hrulefill} \vspace{0.07in} %%% Titulo del resumen
  %\par % elimina espacio al inicio de resumen
-{\noindent \color{\@tcolor} \@abstracten \par}
+ \noindent {\color{\@tcolor} \@abstracten \par} 
 {\color{\@pcolor}\vhrulefill{1pt}}
     {\footnotesize \@ifundefined{@keywordsen}{}{%
       \par\vspace{0.07in}\raggedright{\color{\@pcolor} \keywordenname:} {\color{\@tcolor} \@keywordsen}%
